@@ -6,6 +6,8 @@ import ServicesSection from "@/components/services-section"
 import StatsSection from "@/components/stats-section"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
+import BusinessPlanUpload from "@/components/business-plan-upload"
+
 
 export default function HomePage() {
   return (
@@ -17,6 +19,7 @@ export default function HomePage() {
         <AboutSection />
         <ServicesSection />
         <StatsSection />
+        <BusinessPlanUpload />
         <ContactSection />
       </main>
       <Footer />

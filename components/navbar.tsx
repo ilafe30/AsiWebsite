@@ -90,18 +90,13 @@ export default function Navbar() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="outline"
-              asChild
-              className="hover:scale-105 transition-transform duration-300 bg-transparent"
-            >
-              <Link href="/login">Login</Link>
-            </Button>
+        
+    
             <Button
               asChild
               className="bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 transition-all duration-300"
             >
-              <Link href="/signup">Sign Up</Link>
+              <Link href="/login">Log In</Link>
             </Button>
           </div>
 
@@ -163,11 +158,9 @@ export default function Navbar() {
                 Contact Us
               </button>
               <div className="flex flex-col space-y-2 px-3 py-2">
-                <Button variant="outline" asChild>
-                  <Link href="/login">Login</Link>
-                </Button>
+               
                 <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <Link href="/signup">Sign Up</Link>
+                  <Link href="/login">Log In</Link>
                 </Button>
               </div>
             </div>

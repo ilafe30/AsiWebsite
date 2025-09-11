@@ -2,7 +2,23 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play, Sparkles } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
+// Define fixed particle positions to avoid hydration mismatch
+const particlePositions = [
+  { left: 15.2, top: 23.4, delay: 1.2 },
+  { left: 67.8, top: 45.1, delay: 2.8 },
+  { left: 34.5, top: 78.9, delay: 0.5 },
+  { left: 89.1, top: 12.3, delay: 3.4 },
+  { left: 23.7, top: 56.8, delay: 1.9 },
+  { left: 78.2, top: 89.4, delay: 2.1 },
+  { left: 45.9, top: 34.7, delay: 0.8 },
+  { left: 12.6, top: 67.2, delay: 3.7 },
+  { left: 91.3, top: 43.8, delay: 1.5 },
+  { left: 58.4, top: 21.6, delay: 2.9 },
+  { left: 76.7, top: 65.3, delay: 0.3 },
+  { left: 29.8, top: 82.1, delay: 3.2 }
+];
 
 export default function HeroSection() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
@@ -49,15 +65,16 @@ export default function HeroSection() {
           }}
         />
 
+        {/* Fixed particles - no more Math.random() */}
         <div className="absolute inset-0">
-          {[...Array(12)].map((_, i) => (
+          {particlePositions.map((particle, i) => (
             <div
               key={i}
               className="absolute animate-floating-particles"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 8}s`,
+                left: `${particle.left}%`,
+                top: `${particle.top}%`,
+                animationDelay: `${particle.delay}s`,
               }}
             >
               <div
