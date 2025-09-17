@@ -1,0 +1,112 @@
+ALGERIAN STARTUP INITIATIVE (ASI)
+===============================================
+
+RÉSULTATS D'ANALYSE - BUSINESS PLAN
+{{BUSINESS_NAME|Votre Startup}}
+
+===============================================
+
+Bonjour {{BUSINESS_NAME|Entrepreneur}},
+
+L'équipe d'analyse de l'Algerian Startup Initiative a procédé à l'évaluation complète de votre business plan soumis le {{SUBMISSION_DATE|[Date de soumission]}}.
+
+Cette analyse a été menée selon nos standards professionnels d'évaluation, en collaboration avec nos experts sectoriels et nos partenaires institutionnels.
+
+SCORE GLOBAL ASI
+===============================================
+{{TOTAL_SCORE|85}}/100 - {{STATUS_TEXT|RETENU POUR INCUBATION ASI}}
+
+Seuil d'acceptation ASI: 65/100
+Méthode: {{ANALYSIS_METHOD|Analyse hybride IA + Expert}}
+Fiabilité: {{CONFIDENCE_SCORE|94}}%
+
+SYNTHÈSE EXÉCUTIVE
+===============================================
+Secteur d'activité: {{BUSINESS_SECTOR|Technologies de l'information}}
+Stade de développement: {{DEVELOPMENT_STAGE|Pré-seed / Prototype}}
+Marché cible: {{TARGET_MARKET|B2B Algérie + Export MENA}}
+Financement requis: {{FUNDING_REQUIRED|€150,000 - €300,000}}
+
+{{EXECUTIVE_SUMMARY|Votre projet présente un potentiel commercial solide avec une proposition de valeur claire. L'équipe démontre les compétences techniques nécessaires, bien que l'expérience commerciale mériterait d'être renforcée. Le marché adressé est porteur mais nécessite une stratégie de pénétration plus structurée.}}
+
+GRILLE D'ÉVALUATION ASI - DÉTAIL PAR CRITÈRE
+===============================================
+
+1. Équipe & Compétences                    {{EQUIPE_SCORE|8.5}}/10  ({{EQUIPE_PERCENT|85}}%)
+   Formation, expérience, complémentarité
+
+2. Problématique & Marché                  {{PROBLEMATIQUE_SCORE|7.0}}/10  ({{PROBLEMATIQUE_PERCENT|70}}%)
+   Identification du problème, taille de marché
+
+3. Analyse Concurrentielle                 {{SOLUTION_MARCHE_SCORE|3.5}}/5   ({{SOLUTION_MARCHE_PERCENT|70}}%)
+   Étude de la concurrence existante
+
+4. Solution & Innovation                   {{SOLUTION_PROPOSEE_SCORE|12.0}}/15  ({{SOLUTION_PROPOSEE_PERCENT|80}}%)
+   Proposition de valeur, différenciation
+
+5. Roadmap Produit                         {{FEUILLE_ROUTE_SCORE|3.0}}/5   ({{FEUILLE_ROUTE_PERCENT|60}}%)
+   Planning de développement, jalons
+
+6. Segmentation Client                     {{CLIENTELE_SCORE|4.0}}/5   ({{CLIENTELE_PERCENT|80}}%)
+   Définition des personas, besoins
+
+7. Positionnement Concurrentiel           {{CONCURRENTS_SCORE|3.5}}/5   ({{CONCURRENTS_PERCENT|70}}%)
+   Avantages compétitifs durables
+
+8. Stratégie de Différenciation           {{DIFFERENCIATION_SCORE|8.0}}/10  ({{DIFFERENCIATION_PERCENT|80}}%)
+   Facteurs de différenciation clés
+
+9. Go-to-Market Strategy                  {{STRATEGIE_SCORE|6.5}}/10  ({{STRATEGIE_PERCENT|65}}%)
+   Stratégie de commercialisation
+
+10. Modèle Économique                     {{BUSINESS_MODEL_SCORE|8.5}}/10  ({{BUSINESS_MODEL_PERCENT|85}}%)
+    Revenus, coûts, rentabilité
+
+11. Plan de Financement                   {{FINANCEMENTS_SCORE|6.0}}/10  ({{FINANCEMENTS_PERCENT|60}}%)
+    Besoins, sources, utilisation
+
+12. Structure Juridique                   {{STATUT_JURIDIQUE_SCORE|4.5}}/5   ({{STATUT_JURIDIQUE_PERCENT|90}}%)
+    Forme juridique, propriété intellectuelle
+
+RECOMMANDATIONS STRATÉGIQUES ASI
+===============================================
+
+Nos recommandations sont issues de l'analyse croisée de votre dossier par nos experts sectoriels et notre algorithme d'évaluation propriétaire.
+
+[CRITIQUE] Structuration de la roadmap produit:
+{{RECOMMENDATION_1|Votre planning de développement manque de jalons intermédiaires mesurables. Définissez des MVP trimestriels avec des métriques de validation précises. Intégrez des phases de test utilisateur à J+30, J+90 et J+180. Prévoyez 2-3 pivots potentiels basés sur les retours marché.}}
+
+[HAUTE] Renforcement de l'analyse concurrentielle:
+{{RECOMMENDATION_2|Analysez spécifiquement 5-7 concurrents directs et indirects avec leur positionnement prix, leur stratégie d'acquisition client, et leurs faiblesses exploitables. Identifiez les barrières à l'entrée réelles de votre secteur et votre stratégie pour les contourner.}}
+
+[HAUTE] Optimisation du plan de financement:
+{{RECOMMENDATION_3|Détaillez précisément l'utilisation des fonds sur 24 mois avec une répartition 40% développement produit, 35% marketing/commercial, 25% opérations. Identifiez 3-4 sources de financement complémentaires (grants, business angels, crowdfunding) avec timeline de levée.}}
+
+{{#RECOMMENDATION_4}}[MOYENNE] Développement commercial:
+{{RECOMMENDATION_4}}{{/RECOMMENDATION_4}}
+
+{{#RECOMMENDATION_5}}[MOYENNE] Stratégie opérationnelle:
+{{RECOMMENDATION_5}}{{/RECOMMENDATION_5}}
+
+ACCÈS AU RAPPORT DÉTAILLÉ
+===============================================
+
+Téléchargez votre analyse complète avec recommandations sectorielles, benchmarks marché et plan d'action personnalisé.
+
+Lien: {{REPORT_URL|https://asi.incubateur.dz/report}}
+
+Référence: ASI-{{CANDIDATURE_ID|12345}}
+Analysé le: {{ANALYSIS_DATE|15/01/2025 à 14:30}}
+Validé par: Comité d'évaluation ASI
+
+===============================================
+ALGERIAN STARTUP INITIATIVE
+
+Incubateur national dédié à l'écosystème entrepreneurial algérien
+Email automatisé - Ne pas répondre directement
+
+Contact: {{SUPPORT_EMAIL|contact@asi.incubateur.dz}}
+Site web: https://asi.incubateur.dz
+
+Pour vous désabonner: {{UNSUBSCRIBE_URL|#}}
+===============================================
