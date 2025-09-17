@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Résultats de l'analyse de votre business plan - ASI</title>
+    <style>
+        /* Reset styles for email clients */
+        body, table, td, p, a, li, blockquote {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        /* Main body styles */
+        body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #f8f9fa !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            line-height: 1.6 !important;
+            color: #003255 !important;
+        }
+
+        /* Container */
+        .email-container {
+            max-width: 650px !important;
+            margin: 0 auto !important;
+            background-color: #FFFFFF !important;
+            border-radius: 8px !important;
+        }
+
+        /* Header styles */
+        .header-cell {
+            background-color: #003255 !important;
+            background-image: linear-gradient(135deg, #003255 0%, #004066 100%) !important;
+            padding: 25px 30px !important;
+            text-align: center !important;
+            color: #FFFFFF !important;
+            border-bottom: 4px solid #FDC513 !important;
+        }
+        
+        .header-cell h1 {
+            margin: 0 !important;
+            font-size: 24px !important;
+            font-weight: 600 !important;
+            color: #FFFFFF !important;
+        }
+        
+        .header-cell p {
+            margin: 10px 0 0 0 !important;
+            font-size: 16px !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Content sections */
+        .section-cell {
+            padding: 25px 30px !important;
+            border-bottom: 1px solid #e9ecef !important;
+        }
+
+        /* Score container */
+        .score-container {
+            text-align: center !important;
+            margin: 25px 0 !important;
+            padding: 30px 20px !important;
+            background-color: #003255 !important;
+            border-radius: 15px !important;
+            border: 3px solid #FDC513 !important;
+        }
+        .score-main {
+            font-size: 48px !important;
+            font-weight: bold !important;
+            margin-bottom: 8px !important;
+            color: #FDC513 !important;
+        }
+        .score-label {
+            font-size: 18px !important;
+            font-weight: 600 !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Status badges */
+        .status-accepted {
+            display: inline-block !important;
+            padding: 10px 20px !important;
+            background-color: #FDC513 !important;
+            color: #003255 !important;
+            border: 2px solid #FDC513 !important;
+            border-radius: 25px !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+        }
+        .status-rejected {
+            display: inline-block !important;
+            padding: 10px 20px !important;
+            background-color: #dc3545 !important;
+            color: #FFFFFF !important;
+            border: 2px solid #dc3545 !important;
+            border-radius: 25px !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+        }
+
+        /* Executive summary */
+        .executive-summary {
+            background-color: #FFFFFF !important;
+            border: 2px solid #003255 !important;
+            border-radius: 12px !important;
+            padding: 25px !important;
+            margin: 25px 0 !important;
+        }
+        .executive-summary h3 {
+            color: #003255 !important;
+            margin-top: 0 !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+            border-bottom: 2px solid #FDC513 !important;
+            padding-bottom: 10px !important;
+        }
+
+        /* Criteria table */
+        .criteria-table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+            margin-top: 20px !important;
+        }
+        .criteria-table th {
+            background-color: #003255 !important;
+            color: #FFFFFF !important;
+            padding: 15px 12px !important;
+            text-align: left !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+        }
+        .criteria-table td {
+            padding: 12px !important;
+            text-align: left !important;
+            border-bottom: 1px solid #dee2e6 !important;
+            font-size: 14px !important;
+        }
+        .criteria-table tr:nth-child(even) {
+            background-color: #f8f9fa !important;
+        }
+        .criteria-score {
+            text-align: right !important;
+            font-weight: bold !important;
+        }
+        .score-excellent { color: #FDC513 !important; font-weight: bold !important; }
+        .score-good { color: #28a745 !important; font-weight: bold !important; }
+        .score-average { color: #fd7e14 !important; font-weight: bold !important; }
+        .score-poor { color: #dc3545 !important; font-weight: bold !important; }
+
+        /* Recommendations */
+        .recommendations {
+            background-color: #f8f9fa !important;
+            border-left: 6px solid #FDC513 !important;
+            border-radius: 0 12px 12px 0 !important;
+            padding: 25px !important;
+            margin: 25px 0 !important;
+        }
+        .recommendations h3 {
+            margin-top: 0 !important;
+            color: #003255 !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+        }
+        .recommendations li {
+            margin-bottom: 15px !important;
+            padding: 15px !important;
+            background-color: #FFFFFF !important;
+            border-radius: 8px !important;
+            border-left: 4px solid #003255 !important;
+            line-height: 1.6 !important;
+            font-size: 14px !important;
+        }
+        .recommendation-priority {
+            display: inline-block !important;
+            background-color: #FDC513 !important;
+            color: #003255 !important;
+            font-weight: bold !important;
+            font-size: 11px !important;
+            padding: 4px 8px !important;
+            border-radius: 12px !important;
+            margin-bottom: 8px !important;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block !important;
+            padding: 16px 32px !important;
+            background-color: #FDC513 !important;
+            color: #003255 !important;
+            text-decoration: none !important;
+            border-radius: 8px !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            margin: 20px 0 !important;
+            border: 2px solid #FDC513 !important;
+            font-size: 14px !important;
+        }
+
+        /* Footer */
+        .footer-cell {
+            background-color: #003255 !important;
+            color: #FFFFFF !important;
+            padding: 30px !important;
+            text-align: center !important;
+            font-size: 14px !important;
+        }
+        .footer-cell .asi-branding {
+            font-weight: bold !important;
+            font-size: 16px !important;
+            color: #FDC513 !important;
+            margin-bottom: 10px !important;
+        }
+        .footer-cell a {
+            color: #FDC513 !important;
+            text-decoration: none !important;
+        }
+
+        /* Mobile responsive */
+        @media screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+            }
+            .section-cell, .header-cell, .footer-cell {
+                padding: 20px 15px !important;
+            }
+            .score-main {
+                font-size: 36px !important;
+            }
+            .criteria-table th, .criteria-table td {
+                padding: 8px 6px !important;
+                font-size: 13px !important;
+            }
+            .cta-button {
+                display: block !important;
+                width: 90% !important;
+                margin: 15px auto !important;
+            }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8f9fa; font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #003255;">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0; padding: 0; background-color: #f8f9fa;">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table cellpadding="0" cellspacing="0" border="0" class="email-container" style="max-width: 650px; margin: 0 auto; background-color: #FFFFFF; border-radius: 8px;">
+                    
+                    <!-- Header with ASI Branding -->
+                    <tr>
+                        <td class="header-cell" style="background-color: #003255; padding: 25px 30px; text-align: center; color: #FFFFFF; border-bottom: 4px solid #FDC513;">
+                            <!-- ASI Logo - Base64 encoded or external URL -->
+                            <img src="https://drive.google.com/uc?export=download&id=1ENaFQaY0DQwA46LsGe94jPemTbuo7LiR" alt="ASI Logo" style="max-width: 180px; height: auto; margin-bottom: 15px; margin-left: auto; margin-right: auto; display: block;">
+                            <h1 style="margin: 0; font-size: 24px; font-weight: 600; color: #FFFFFF;">Évaluation Business Plan</h1>
+                            <p style="margin: 10px 0 0 0; font-size: 16px; color: #FFFFFF;">Analyse professionnelle par l'écosystème ASI</p>
+                        </td>
+                    </tr>
+
+                    <!-- Personal greeting -->
+                    <tr>
+                        <td class="section-cell" style="padding: 25px 30px; border-bottom: 1px solid #e9ecef;">
+                            <h2 style="color: #003255; margin-bottom: 20px;">Bonjour {{BUSINESS_NAME|Entrepreneur}},</h2>
+                            <p>L'équipe d'analyse de l'<strong>Algerian Startup Initiative</strong> a procédé à l'évaluation complète de votre business plan soumis le <strong>{{SUBMISSION_DATE|[Date de soumission]}}</strong>.</p>
+                            <p>Cette analyse a été menée selon nos standards professionnels d'évaluation, en collaboration avec notre AI.</p>
+                        </td>
+                    </tr>
+
+                    <!-- Score section -->
+                    <tr>
+                        <td class="section-cell" style="padding: 25px 30px; border-bottom: 1px solid #e9ecef;">
+                            <div class="score-container" style="text-align: center; margin: 25px 0; padding: 30px 20px; background-color: #003255; border-radius: 15px; border: 3px solid #FDC513;">
+                                <div class="score-main" style="font-size: 48px; font-weight: bold; margin-bottom: 8px; color: #FDC513;">{{TOTAL_SCORE|85}}/100</div>
+                                <div class="score-label" style="font-size: 18px; font-weight: 600; color: #FFFFFF;">Score Global ASI</div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 25px;">
+                                <span class="status-{{STATUS_CLASS|accepted}}" style="display: inline-block; padding: 10px 20px; background-color: #FDC513; color: #003255; border: 2px solid #FDC513; border-radius: 25px; font-weight: bold; font-size: 14px;">
+                                    {{STATUS_TEXT|RETENU POUR INCUBATION ASI}}
+                                </span>
+                            </div>
+
+                            <p style="text-align: center; margin-top: 20px; color: #6c757d; font-size: 14px;">
+                                <strong>Seuil d'acceptation ASI:</strong> 60/100 • 
+                                <strong>Méthode:</strong> {{ANALYSIS_METHOD|Analyse hybride IA + Expert}} 
+                            </p>
+                        </td>
+                    </tr>
+
+                    <!-- Executive Summary -->
+                    <tr>
+                        <td class="section-cell" style="padding: 25px 30px; border-bottom: 1px solid #e9ecef;">
+                            <div class="executive-summary" style="background-color: #FFFFFF; border: 2px solid #003255; border-radius: 12px; padding: 25px; margin: 25px 0;">
+                                <h3 style="color: #003255; margin-top: 0; font-size: 18px; font-weight: bold; border-bottom: 2px solid #FDC513; padding-bottom: 10px;">Synthèse Exécutive</h3>
+                                <p><strong>Secteur d'activité:</strong> {{BUSINESS_SECTOR|Technologies de l'information}}</p>
+                                <p><strong>Stade de développement:</strong> {{DEVELOPMENT_STAGE|Pré-seed / Prototype}}</p>
+                                <p><strong>Marché cible:</strong> {{TARGET_MARKET|B2B Algérie + Export MENA}}</p>
+                                <p><strong>Financement requis:</strong> {{FUNDING_REQUIRED|€150,000 - €300,000}}</p>
+                                <p>{{EXECUTIVE_SUMMARY|Votre projet présente un potentiel commercial solide avec une proposition de valeur claire. L'équipe démontre les compétences techniques nécessaires, bien que l'expérience commerciale mériterait d'être renforcée. Le marché adressé est porteur mais nécessite une stratégie de pénétration plus structurée.}}</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Detailed results table -->
+                    <tr>
+                        <td class="section-cell" style="padding: 25px 30px; border-bottom: 1px solid #e9ecef;">
+                            <h3 style="color: #003255; margin-bottom: 20px;">Grille d'Évaluation ASI - Détail par Critère</h3>
+                            <table class="criteria-table" cellpadding="0" cellspacing="0" border="0" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                                <thead>
+                                    <tr>
+                                        <th style="background-color: #003255; color: #FFFFFF; padding: 15px 12px; text-align: left; font-weight: bold; font-size: 14px; width: 50%;">Critère d'Évaluation</th>
+                                        <th style="background-color: #003255; color: #FFFFFF; padding: 15px 12px; text-align: left; font-weight: bold; font-size: 14px; width: 20%;">Obtenu</th>
+                                        <th style="background-color: #003255; color: #FFFFFF; padding: 15px 12px; text-align: left; font-weight: bold; font-size: 14px; width: 20%;">Maximum</th>
+                                        <th style="background-color: #003255; color: #FFFFFF; padding: 15px 12px; text-align: left; font-weight: bold; font-size: 14px; width: 10%;">%</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 12px; font-size: 14px;"><strong>1. Équipe & Compétences</strong><br><small>Formation, expérience, complémentarité</small></td>
+                                        <td class="criteria-score score-{{EQUIPE_CLASS|good}}" style="text-align: right; font-weight: bold; color: #28a745;">{{EQUIPE_SCORE|8.5}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">10</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{EQUIPE_PERCENT|85}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-size: 14px;"><strong>2. Problématique identifiée</strong><br><small>Identification du problème, preuves et données</small></td>
+                                        <td class="criteria-score score-{{PROBLEMATIQUE_CLASS|average}}" style="text-align: right; font-weight: bold; color: #fd7e14;">{{PROBLEMATIQUE_SCORE|7.0}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">10</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{PROBLEMATIQUE_PERCENT|70}}%</td>
+                                    </tr>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 12px; font-size: 14px;"><strong>3. Solution actuelle sur le marché</strong><br><small>Connaissance des solutions existantes, limites</small></td>
+                                        <td class="criteria-score score-{{SOLUTION_MARCHE_CLASS|average}}" style="text-align: right; font-weight: bold; color: #fd7e14;">{{SOLUTION_MARCHE_SCORE|3.5}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">5</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{SOLUTION_MARCHE_PERCENT|70}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-size: 14px;"><strong>4. Solution proposée & Valeur ajoutée</strong><br><small>Proposition de valeur, innovation, impact</small></td>
+                                        <td class="criteria-score score-{{SOLUTION_PROPOSEE_CLASS|good}}" style="text-align: right; font-weight: bold; color: #28a745;">{{SOLUTION_PROPOSEE_SCORE|12.0}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">15</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{SOLUTION_PROPOSEE_PERCENT|80}}%</td>
+                                    </tr>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 12px; font-size: 14px;"><strong>5. Feuille de route du produit/service</strong><br><small>Planning de développement, jalons et délais</small></td>
+                                        <td class="criteria-score score-{{FEUILLE_ROUTE_CLASS|average}}" style="text-align: right; font-weight: bold; color: #fd7e14;">{{FEUILLE_ROUTE_SCORE|3.0}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">5</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{FEUILLE_ROUTE_PERCENT|60}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-size: 14px;"><strong>6. Clientèle ciblée</strong><br><small>Segment de clientèle bien défini, taille du marché</small></td>
+                                        <td class="criteria-score score-{{CLIENTELE_CLASS|excellent}}" style="text-align: right; font-weight: bold; color: #FDC513;">{{CLIENTELE_SCORE|4.5}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">5</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{CLIENTELE_PERCENT|90}}%</td>
+                                    </tr>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 12px; font-size: 14px;"><strong>7. Concurrents</strong><br><small>Analyse des concurrents (direct/indirect), dynamique concurrentielle</small></td>
+                                        <td class="criteria-score score-{{CONCURRENTS_CLASS|good}}" style="text-align: right; font-weight: bold; color: #28a745;">{{CONCURRENTS_SCORE|4.0}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">5</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{CONCURRENTS_PERCENT|80}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-size: 14px;"><strong>8. Différenciation (avantage concurrentiel)</strong><br><small>Avantage concurrentiel clairement énoncé, difficilement réplicable</small></td>
+                                        <td class="criteria-score score-{{DIFFERENCIATION_CLASS|excellent}}" style="text-align: right; font-weight: bold; color: #FDC513;">{{DIFFERENCIATION_SCORE|9.5}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">10</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{DIFFERENCIATION_PERCENT|95}}%</td>
+                                    </tr>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 12px; font-size: 14px;"><strong>9. Stratégie de conquête du marché</strong><br><small>Go-to-market, partenariats, fidélisation</small></td>
+                                        <td class="criteria-score score-{{STRATEGIE_CLASS|excellent}}" style="text-align: right; font-weight: bold; color: #FDC513;">{{STRATEGIE_SCORE|9.5}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">10</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{STRATEGIE_PERCENT|95}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-size: 14px;"><strong>10. Modèle de business</strong><br><small>Modèle économique clair, logique de revenus, hypothèses financières</small></td>
+                                        <td class="criteria-score score-{{BUSINESS_MODEL_CLASS|excellent}}" style="text-align: right; font-weight: bold; color: #FDC513;">{{BUSINESS_MODEL_SCORE|9.5}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">10</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{BUSINESS_MODEL_PERCENT|95}}%</td>
+                                    </tr>
+                                    <tr style="background-color: #f8f9fa;">
+                                        <td style="padding: 12px; font-size: 14px;"><strong>11. Plan financier détaillé</strong><br><small>P&L, estimation des besoins, sources de financement</small></td>
+                                        <td class="criteria-score score-{{FINANCEMENTS_CLASS|excellent}}" style="text-align: right; font-weight: bold; color: #FDC513;">{{FINANCEMENTS_SCORE|9.0}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">10</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{FINANCEMENTS_PERCENT|90}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 12px; font-size: 14px;"><strong>12. Statut juridique de l’entreprise</strong><br><small>Statut juridique actuel ou prévu, conformité aux exigences légales</small></td>
+                                        <td class="criteria-score score-{{STATUT_JURIDIQUE_CLASS|excellent}}" style="text-align: right; font-weight: bold; color: #FDC513;">{{STATUT_JURIDIQUE_SCORE|5.0}}</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">5</td>
+                                        <td class="criteria-score" style="text-align: right; font-weight: bold;">{{STATUT_JURIDIQUE_PERCENT|100}}%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Professional Recommendations -->                                       
+                    <tr>
+                        <td class="section-cell">
+                            <div class="recommendations">
+                                <h3>Recommandations Stratégiques ASI</h3>
+                                <p style="margin-bottom: 20px; font-style: italic; color: #6c757d;">
+                                    Nos recommandations sont issues de l'analyse croisée de votre dossier par nos experts sectoriels et notre algorithme d'évaluation propriétaire.
+                                </p>
+                                
+                                <ul style="list-style: none; margin: 20px 0; padding-left: 0;">
+                                    {{RECOMMENDATIONS_HTML|<li>Aucune recommandation spécifique générée.</li>}}
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- ASI Footer -->
+                    <tr>
+                        <td class="footer-cell" style="background-color: #003255; color: #FFFFFF; padding: 30px; text-align: center; font-size: 14px;">
+                            <div class="asi-branding" style="font-weight: bold; font-size: 16px; color: #FDC513; margin-bottom: 10px;">ALGERIAN STARTUP INITIATIVE</div>
+                            <p>
+                                Incubateur national dédié à l'écosystème entrepreneurial algérien<br>
+                                Email automatisé - Ne pas répondre directement
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <strong>Contact:</strong> <a href="mailto:{{SUPPORT_EMAIL|contact@asi.incubateur.dz}}" style="color: #FDC513; text-decoration: none;">{{SUPPORT_EMAIL|contact@asi.incubateur.dz}}</a><br>
+                                <strong>Site web:</strong> <a href="https://asi.incubateur.dz" style="color: #FDC513; text-decoration: none;">asi.incubateur.dz</a>
+                            </p>
+                            <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+                                Pour vous désabonner de nos communications, 
+                                <a href="{{UNSUBSCRIBE_URL|#}}" style="color: #FDC513; text-decoration: none;">cliquez ici</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```

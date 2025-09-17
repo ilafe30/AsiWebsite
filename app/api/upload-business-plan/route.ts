@@ -200,9 +200,9 @@ async function runPythonAnalysis(params: {
   sector: string;
 }): Promise<any> {
   return new Promise((resolve, reject) => {
-    const pythonScriptPath = path.join(process.cwd(), "..", "ai_analysis", "src", "main_analyser.py");
-    const workingDir = path.join(process.cwd(), "..", "ai_analysis");
-    
+    const pythonScriptPath = path.join(process.cwd(), "ai_agent", "src", "main_analyser.py");
+    const workingDir = path.join(process.cwd(), "ai_agent");
+
     console.log(`🐍 Python script path: ${pythonScriptPath}`);
     
     if (!fs.existsSync(pythonScriptPath)) {
