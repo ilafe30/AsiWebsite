@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2025-09-11T19:54:54.316078",
+    "recipient_email": "founder@techstart.com",
+    "recipient_name": "TechStart Solutions",
+    "business_name": "TechStart Solutions",
+    "candidature_id": "4",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-11T19:57:16.696917",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "TechStart Solutions",
+    "business_name": "TechStart Solutions",
+    "candidature_id": "5",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  },
+  {
+    "timestamp": "2025-09-11T20:04:16.558689",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "TechStart Solutions",
+    "business_name": "TechStart Solutions",
+    "candidature_id": "9",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  }
+]

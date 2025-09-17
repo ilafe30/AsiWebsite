@@ -1,0 +1,614 @@
+[
+  {
+    "timestamp": "2025-09-11T01:30:37.264406",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test User",
+    "business_name": "Test Company Inc.",
+    "candidature_id": 2,
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T01:44:36.815756",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test User",
+    "business_name": "Test Business",
+    "candidature_id": "TEST-001",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T01:57:07.944526",
+    "recipient_email": "test.final@example.com",
+    "recipient_name": "Startup Test Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "1",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T01:57:11.937661",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test User Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "TEST-1",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:02:34.614145",
+    "recipient_email": "test.final@example.com",
+    "recipient_name": "Startup Test Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "2",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:02:37.887086",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test User Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "TEST-2",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:04:58.292955",
+    "recipient_email": "test.final@example.com",
+    "recipient_name": "Startup Test Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "3",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:05:02.648831",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test User Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "TEST-3",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:33:15.632038",
+    "recipient_email": "test.final@example.com",
+    "recipient_name": "Startup Test Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "4",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:33:19.011769",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test User Final",
+    "business_name": "Startup Test Final",
+    "candidature_id": "TEST-4",
+    "status": "success"
+  },
+  {
+    "timestamp": "2025-09-11T02:59:22.722208",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "5",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T02:59:25.703626",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-5",
+    "status": "success",
+    "sector": "FoodTech et Restauration Digitale"
+  },
+  {
+    "timestamp": "2025-09-11T03:05:28.614876",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "6",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T03:05:32.163909",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-6",
+    "status": "success",
+    "sector": "AgriTech et Agriculture Digitale"
+  },
+  {
+    "timestamp": "2025-09-11T03:14:44.028916",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "7",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-11T03:14:47.254969",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-7",
+    "status": "success",
+    "sector": "EdTech et Formation Num\u00e9rique"
+  },
+  {
+    "timestamp": "2025-09-11T03:27:13.379429",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "8",
+    "status": "success",
+    "sector": "FoodTech et Restauration Digitale"
+  },
+  {
+    "timestamp": "2025-09-11T03:27:19.476809",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-8",
+    "status": "success",
+    "sector": "LogisticTech et Supply Chain"
+  },
+  {
+    "timestamp": "2025-09-11T03:30:47.207690",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "9",
+    "status": "success",
+    "sector": "LogisticTech et Supply Chain"
+  },
+  {
+    "timestamp": "2025-09-11T03:30:50.909142",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-9",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T03:36:05.443831",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "10",
+    "status": "success",
+    "sector": "LogisticTech et Supply Chain"
+  },
+  {
+    "timestamp": "2025-09-11T03:36:09.003899",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-10",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  },
+  {
+    "timestamp": "2025-09-11T03:36:54.403154",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "11",
+    "status": "success",
+    "sector": "FoodTech et Restauration Digitale"
+  },
+  {
+    "timestamp": "2025-09-11T03:36:57.774479",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-11",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-11T03:41:55.360798",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "12",
+    "status": "success",
+    "sector": "HealthTech et T\u00e9l\u00e9m\u00e9decine"
+  },
+  {
+    "timestamp": "2025-09-11T03:41:59.215066",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-12",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables"
+  },
+  {
+    "timestamp": "2025-09-11T03:43:20.540039",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "13",
+    "status": "success",
+    "sector": "LogisticTech et Supply Chain"
+  },
+  {
+    "timestamp": "2025-09-11T03:43:24.121616",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-13",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-11T03:52:50.195853",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "14",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T03:52:53.857330",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-14",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T03:54:06.675608",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "15",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-11T03:54:11.177832",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-15",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables"
+  },
+  {
+    "timestamp": "2025-09-11T04:04:26.047027",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "16",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  },
+  {
+    "timestamp": "2025-09-11T04:04:29.189580",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-16",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables"
+  },
+  {
+    "timestamp": "2025-09-11T04:09:12.965656",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "17",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T04:09:17.641939",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-17",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-11T04:10:17.366595",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "18",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables"
+  },
+  {
+    "timestamp": "2025-09-11T04:10:22.484647",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-18",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-11T04:11:41.578809",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "19",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  },
+  {
+    "timestamp": "2025-09-11T04:11:44.503992",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-19",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-11T04:12:33.917687",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "20",
+    "status": "success",
+    "sector": "AgriTech et Agriculture Digitale"
+  },
+  {
+    "timestamp": "2025-09-11T04:12:36.985207",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-20",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-11T08:44:07.227587",
+    "recipient_email": "founder@ecotech.dz",
+    "recipient_name": "EcoTech Algeria",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "21",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-11T08:44:10.708628",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Karim Benali",
+    "business_name": "EcoTech Algeria",
+    "candidature_id": "ASI-21",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables"
+  },
+  {
+    "timestamp": "2025-09-14T02:31:48.455394",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "Test Company",
+    "business_name": "Test Company",
+    "candidature_id": "3",
+    "status": "success",
+    "sector": "AgriTech et Agriculture Digitale"
+  },
+  {
+    "timestamp": "2025-09-14T03:22:55.828767",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiades",
+    "business_name": "pleiades",
+    "candidature_id": "7",
+    "status": "success",
+    "sector": "EdTech et Formation Num\u00e9rique"
+  },
+  {
+    "timestamp": "2025-09-14T11:56:43.512585",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiades",
+    "business_name": "pleiades",
+    "candidature_id": "8",
+    "status": "success",
+    "sector": "LogisticTech et Supply Chain"
+  },
+  {
+    "timestamp": "2025-09-14T12:08:04.517524",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiades",
+    "business_name": "pleiades",
+    "candidature_id": "9",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-14T12:09:00.737704",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "10",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  },
+  {
+    "timestamp": "2025-09-14T12:09:55.965431",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "11",
+    "status": "success",
+    "sector": "HealthTech et T\u00e9l\u00e9m\u00e9decine"
+  },
+  {
+    "timestamp": "2025-09-14T12:10:47.918885",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesXX",
+    "business_name": "pleiadesXX",
+    "candidature_id": "12",
+    "status": "success",
+    "sector": "HealthTech et T\u00e9l\u00e9m\u00e9decine"
+  },
+  {
+    "timestamp": "2025-09-14T23:22:04.895100",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiades",
+    "business_name": "pleiades",
+    "candidature_id": "13",
+    "status": "success",
+    "sector": "HealthTech et T\u00e9l\u00e9m\u00e9decine"
+  },
+  {
+    "timestamp": "2025-09-14T23:24:15.251871",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesXXX",
+    "business_name": "pleiadesXXX",
+    "candidature_id": "14",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-14T23:26:03.076620",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesXX",
+    "business_name": "pleiadesXX",
+    "candidature_id": "15",
+    "status": "success",
+    "sector": "AgriTech et Agriculture Digitale"
+  },
+  {
+    "timestamp": "2025-09-15T00:25:22.370486",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleaidesXX",
+    "business_name": "pleaidesXX",
+    "candidature_id": "16",
+    "status": "success",
+    "sector": "LogisticTech et Supply Chain"
+  },
+  {
+    "timestamp": "2025-09-15T00:43:23.189387",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "17",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-15T00:45:49.905736",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "18",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables"
+  },
+  {
+    "timestamp": "2025-09-15T01:51:55.838311",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "19",
+    "status": "success",
+    "sector": "HealthTech et T\u00e9l\u00e9m\u00e9decine"
+  },
+  {
+    "timestamp": "2025-09-15T02:03:45.596437",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "20",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-15T13:53:27.473591",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "21",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-15T17:04:58.649728",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "pleiadesX",
+    "business_name": "pleiadesX",
+    "candidature_id": "22",
+    "status": "success",
+    "sector": "RetailTech et Commerce de Proximit\u00e9"
+  },
+  {
+    "timestamp": "2025-09-15T17:06:09.798356",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "zz",
+    "business_name": "zz",
+    "candidature_id": "23",
+    "status": "success",
+    "sector": "AgriTech et Agriculture Digitale"
+  },
+  {
+    "timestamp": "2025-09-15T17:10:17.432183",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "24",
+    "status": "success",
+    "sector": "FinTech et Services Financiers"
+  },
+  {
+    "timestamp": "2025-09-15T17:12:47.370370",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "25",
+    "status": "success",
+    "sector": "PropTech et Immobilier Digital"
+  },
+  {
+    "timestamp": "2025-09-15T17:21:48.576415",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "cc",
+    "business_name": "cc",
+    "candidature_id": "26",
+    "status": "success",
+    "sector": "E-commerce et MarketPlace"
+  },
+  {
+    "timestamp": "2025-09-15T18:03:20.281798",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "vv",
+    "business_name": "vv",
+    "candidature_id": "27",
+    "status": "success",
+    "sector": "EdTech et Formation Num\u00e9rique"
+  },
+  {
+    "timestamp": "2025-09-17T22:16:58.761624",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "28",
+    "status": "success",
+    "sector": "FoodTech et Restauration Digitale"
+  },
+  {
+    "timestamp": "2025-09-17T22:38:37.862136",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "29",
+    "status": "success",
+    "sector": "GreenTech et \u00c9nergies Renouvelables",
+    "recommendations_count": 5
+  },
+  {
+    "timestamp": "2025-09-17T23:15:36.308640",
+    "recipient_email": "thouria.tahari.ensia@gmail.com",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "32",
+    "status": "success",
+    "recommendations_count": 5
+  }
+]
