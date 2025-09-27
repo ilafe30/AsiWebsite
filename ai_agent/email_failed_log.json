@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "timestamp": "2025-09-27T18:33:06.760112",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "34",
+    "error": "(535, b'5.7.8 Username and Password not accepted. For more information, go to\\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-4151d0ae6f9sm7035924f8f.51 - gsmtp')",
+    "status": "failed"
+  },
+  {
+    "timestamp": "2025-09-27T18:40:22.143965",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "35",
+    "error": "(535, b'5.7.8 Username and Password not accepted. For more information, go to\\n5.7.8  https://support.google.com/mail/?p=BadCredentials ffacd0b85a97d-40fc9247e85sm12043376f8f.60 - gsmtp')",
+    "status": "failed"
+  }
+]
