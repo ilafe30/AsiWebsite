@@ -29,6 +29,7 @@ export async function GET(req: NextRequest) {
       totalScore: row.total_score ?? null,
       isEligible: row.is_eligible ?? null,
       emailSent: !!(row.email_sent || row.email_sent_date),
+      initialPhase: typeof row.total_score === 'number' ? (row.total_score < 60 ? 'refused' : 'accepted') : null,
     }));
 
     return NextResponse.json({

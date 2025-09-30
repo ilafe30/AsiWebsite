@@ -21,6 +21,7 @@ interface ApplicationItem {
   totalScore: number | null;
   isEligible: boolean | null;
   emailSent: boolean;
+  initialPhase: 'accepted' | 'refused' | null;
 }
 
 interface ApiResponse {
@@ -44,7 +45,6 @@ export default function ApplicationsTable() {
   const [dateTo, setDateTo] = useState<string>("");
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [resendingId, setResendingId] = useState<number | null>(null);
 
   const query = useMemo(() => {
     const params = new URLSearchParams();
@@ -74,20 +74,6 @@ export default function ApplicationsTable() {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-
-  const resendEmail = async (id: number) => {
-    setResendingId(id);
-    try {
-      const res = await fetch(`/api/admin/applications/${id}/resend-email`, { method: "POST" });
-      const json = await res.json();
-      if (!res.ok || !json.success) throw new Error(json.error || "Resend failed");
-      await fetchData();
-    } catch (e) {
-      alert((e as any)?.message || "Resend failed");
-    } finally {
-      setResendingId(null);
-    }
-  };
 
   const onRefresh = () => fetchData();
 
@@ -144,6 +130,7 @@ export default function ApplicationsTable() {
               <TableHead>Name</TableHead>
               <TableHead>Submission Date</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Initial Phase</TableHead>
               <TableHead>Email Sent</TableHead>
               <TableHead className="w-[220px]">Actions</TableHead>
             </TableRow>
@@ -172,16 +159,12 @@ export default function ApplicationsTable() {
                 <TableCell>{item.name}</TableCell>
                 <TableCell>{new Date(item.submissionDate).toLocaleString()}</TableCell>
                 <TableCell className="capitalize">{item.analysisStatus || "unknown"}</TableCell>
+                <TableCell className="capitalize">{item.initialPhase ?? "-"}</TableCell>
                 <TableCell>{item.emailSent ? "✅" : "❌"}</TableCell>
                 <TableCell className="space-x-2">
                   <Button variant="outline" size="sm" onClick={() => setSelectedId(item.id)}>
                     View Report
                   </Button>
-                  {!item.emailSent && (
-                    <Button variant="secondary" size="sm" onClick={() => resendEmail(item.id)} disabled={resendingId === item.id}>
-                      {resendingId === item.id ? "Resending..." : "Resend Email"}
-                    </Button>
-                  )}
                 </TableCell>
               </TableRow>
             ))}
