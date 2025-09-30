@@ -1,14 +1,17 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 
-// Use the ai_agent database path
-const dbPath = path.join(process.cwd(), 'ai_agent', 'data', 'database', 'nanonets_extraction.db');
+// Existing readonly DB used by analytics/admin
+const aiDbPath = path.join(process.cwd(), 'ai_agent', 'data', 'database', 'nanonets_extraction.db');
+
+// New auth database for users and sessions (read/write)
+const authDbPath = path.join(process.cwd(), 'unified_extraction.db');
 
 export class DatabaseService {
   private db: Database.Database;
 
   constructor() {
-    this.db = new Database(dbPath, { readonly: true });
+    this.db = new Database(aiDbPath, { readonly: true });
   }
 
   getCandidatures(status?: string) {
@@ -104,5 +107,94 @@ export class DatabaseService {
 
   close() {
     this.db.close();
+  }
+}
+
+export class AuthDatabaseService {
+  private db: Database.Database;
+
+  constructor() {
+    // Ensure the database opens in read/write and creates if missing
+    this.db = new Database(authDbPath);
+    this.initializeSchema();
+  }
+
+  private initializeSchema() {
+    // Users table and email verification tokens
+    this.db.exec(`
+      CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        startup_name TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        password_hash TEXT NOT NULL,
+        role TEXT NOT NULL DEFAULT 'user',
+        email_verified INTEGER NOT NULL DEFAULT 0,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE TABLE IF NOT EXISTS email_verification_tokens (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        token TEXT NOT NULL UNIQUE,
+        expires_at DATETIME NOT NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+      CREATE INDEX IF NOT EXISTS idx_tokens_user ON email_verification_tokens(user_id);
+      CREATE INDEX IF NOT EXISTS idx_tokens_token ON email_verification_tokens(token);
+    `);
+  }
+
+  createUser(params: { startup_name: string; email: string; password_hash: string }) {
+    const stmt = this.db.prepare(
+      'INSERT INTO users (startup_name, email, password_hash) VALUES (?, ?, ?)'
+    );
+    const info = stmt.run(params.startup_name, params.email, params.password_hash);
+    return info.lastInsertRowid as number;
+  }
+
+  getUserByEmail(email: string) {
+    return this.db.prepare('SELECT * FROM users WHERE email = ?').get(email) as
+      | {
+          id: number;
+          startup_name: string;
+          email: string;
+          password_hash: string;
+          role: string;
+          email_verified: number;
+          created_at: string;
+          updated_at: string;
+        }
+      | undefined;
+  }
+
+  getUserById(id: number) {
+    return this.db.prepare('SELECT * FROM users WHERE id = ?').get(id) as any;
+  }
+
+  markEmailVerified(userId: number) {
+    this.db.prepare('UPDATE users SET email_verified = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?').run(userId);
+  }
+
+  createVerificationToken(userId: number, token: string, expiresAtIso: string) {
+    const stmt = this.db.prepare(
+      'INSERT INTO email_verification_tokens (user_id, token, expires_at) VALUES (?, ?, ?)' 
+    );
+    stmt.run(userId, token, expiresAtIso);
+  }
+
+  getVerificationToken(token: string) {
+    return this.db
+      .prepare('SELECT * FROM email_verification_tokens WHERE token = ?')
+      .get(token) as
+      | { id: number; user_id: number; token: string; expires_at: string; created_at: string }
+      | undefined;
+  }
+
+  deleteVerificationToken(id: number) {
+    this.db.prepare('DELETE FROM email_verification_tokens WHERE id = ?').run(id);
   }
 }

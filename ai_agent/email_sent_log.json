@@ -619,5 +619,23 @@
     "candidature_id": "33",
     "status": "success",
     "recommendations_count": 5
+  },
+  {
+    "timestamp": "2025-09-27T18:48:29.712512",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "36",
+    "status": "success",
+    "recommendations_count": 5
+  },
+  {
+    "timestamp": "2025-09-27T18:56:23.485662",
+    "recipient_email": "thouria.tahari@ensia.edu.dz",
+    "recipient_name": "xx",
+    "business_name": "xx",
+    "candidature_id": "37",
+    "status": "success",
+    "recommendations_count": 5
   }
 ]

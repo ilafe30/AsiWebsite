@@ -190,6 +190,8 @@ async function processBusinessPlanAsync(params: {
 // Python analysis function (same as before, but with better error handling)
 // In your runPythonAnalysis function, change this part:
 
+// Replace the spawn call in your runPythonAnalysis function with this:
+
 async function runPythonAnalysis(params: {
   pdfPath: string;
   businessName: string;
@@ -213,73 +215,96 @@ async function runPythonAnalysis(params: {
 
     console.log(`📁 Working directory: ${workingDir}`);
     
-    // FIXED: Use correct analysis method that actually exists
-    const pythonProcess = spawn("python3", [
+    // Cross-platform Python command detection
+    const pythonCommands = process.platform === 'win32' 
+      ? ['python', 'py', 'python3', 'python.exe']
+      : ['python3', 'python'];
+
+    const args = [
       "src/main_analyser.py",
       "--process",
       "--pdf", params.pdfPath,
       "--business", params.businessName,
       "--email", params.contactEmail,
       "--extract-method", "auto",
-      "--analyze-method", "rule_based", // CHANGED: Use the method that exists
-      "--verbose" // ADD: Get more detailed output for debugging
-    ], {
-      cwd: workingDir,
-      env: { ...process.env }
-    });
+      "--analyze-method", "rule_based",
+      "--verbose"
+    ];
 
-    let outputData = "";
-    let errorData = "";
+    let pythonProcess: any = null;
+    let commandIndex = 0;
 
-    pythonProcess.stdout.on("data", (data) => {
-      const output = data.toString();
-      outputData += output;
-      console.log("🐍 Python stdout:", output.trim());
-      
-      // Debug: Look for recommendations in output
-      if (output.toLowerCase().includes("recommendation") || output.includes("CRITIQUE")) {
-        console.log("🎯 FOUND RECOMMENDATIONS IN OUTPUT:", output);
+    function tryNextPythonCommand() {
+      if (commandIndex >= pythonCommands.length) {
+        reject(new Error("No Python installation found. Please install Python and ensure it's in your PATH."));
+        return;
       }
-    });
 
-    pythonProcess.stderr.on("data", (data) => {
-      const error = data.toString();
-      errorData += error;
-      console.error("🐍 Python stderr:", error.trim());
-    });
+      const pythonCmd = pythonCommands[commandIndex];
+      console.log(`🐍 Trying Python command: ${pythonCmd}`);
 
-    pythonProcess.on("close", (code) => {
-      console.log(`🐍 Python process closed with code: ${code}`);
-      
-      if (code === 0) {
-        try {
-          // Parse Python output for results
-          const result = parsePythonOutput(outputData, params.businessName);
-          resolve(result);
-        } catch (parseError) {
-          console.error("❌ Error parsing Python output:", parseError);
-          reject(new Error("Failed to parse analysis results"));
+      pythonProcess = spawn(pythonCmd, args, {
+        cwd: workingDir,
+        env: { ...process.env }
+      });
+
+      let outputData = "";
+      let errorData = "";
+
+      pythonProcess.stdout.on("data", (data: Buffer) => {
+        const output = data.toString();
+        outputData += output;
+        console.log("🐍 Python stdout:", output.trim());
+        
+        if (output.toLowerCase().includes("recommendation") || output.includes("CRITIQUE")) {
+          console.log("🎯 FOUND RECOMMENDATIONS IN OUTPUT:", output);
         }
-      } else {
-        console.error("❌ Python process failed with code:", code);
-        console.error("❌ Error output:", errorData);
-        reject(new Error(errorData || `Python process failed with code ${code}`));
-      }
-    });
+      });
 
-    pythonProcess.on("error", (error) => {
-      console.error("❌ Failed to start Python process:", error);
-      reject(error);
-    });
+      pythonProcess.stderr.on("data", (data: Buffer) => {
+        const error = data.toString();
+        errorData += error;
+        console.error("🐍 Python stderr:", error.trim());
+      });
 
-    // Set a timeout for the Python process (5 minutes for background processing)
-    setTimeout(() => {
-      if (!pythonProcess.killed) {
-        console.error("⏰ Python process timeout, killing...");
-        pythonProcess.kill();
-        reject(new Error("Analysis process timed out"));
-      }
-    }, 300000); // 5 minutes
+      pythonProcess.on("close", (code: number) => {
+        console.log(`🐍 Python process closed with code: ${code}`);
+        
+        if (code === 0) {
+          try {
+            const result = parsePythonOutput(outputData, params.businessName);
+            resolve(result);
+          } catch (parseError) {
+            console.error("❌ Error parsing Python output:", parseError);
+            reject(new Error("Failed to parse analysis results"));
+          }
+        } else {
+          console.error("❌ Python process failed with code:", code);
+          console.error("❌ Error output:", errorData);
+          reject(new Error(errorData || `Python process failed with code ${code}`));
+        }
+      });
+
+      pythonProcess.on("error", (error: Error) => {
+        console.error(`❌ Failed to start Python with command '${pythonCmd}':`, error.message);
+        
+        // If this command failed, try the next one
+        commandIndex++;
+        setTimeout(tryNextPythonCommand, 100);
+      });
+
+      // Set a timeout for the Python process
+      setTimeout(() => {
+        if (pythonProcess && !pythonProcess.killed) {
+          console.error("⏰ Python process timeout, killing...");
+          pythonProcess.kill();
+          reject(new Error("Analysis process timed out"));
+        }
+      }, 300000); // 5 minutes
+    }
+
+    // Start trying Python commands
+    tryNextPythonCommand();
   });
 }
 

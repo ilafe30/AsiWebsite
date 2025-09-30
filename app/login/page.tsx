@@ -18,16 +18,32 @@ export default function LoginPage() {
   const [loginType, setLoginType] = useState("email")
   const [formData, setFormData] = useState({
     email: "",
-    phone: "",
     password: "",
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement authentication logic
-    console.log("Login attempt:", formData)
-    // Redirect to dashboard after successful login
-    window.location.href = "/dashboard"
+    setError("")
+    try {
+      setSubmitting(true)
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: formData.email, password: formData.password }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data?.error || "Login failed")
+      }
+      const target = data?.redirectTo || "/dashboardfortheuser"
+      window.location.href = target
+    } catch (err: any) {
+      setError(err.message || "Something went wrong")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: string, value: string) => {
@@ -130,12 +146,9 @@ export default function LoginPage() {
             </CardHeader>
             <CardContent className="px-8 pb-8">
               <Tabs value={loginType} onValueChange={setLoginType} className="mb-8">
-                <TabsList className="grid w-full grid-cols-2 h-12">
+                <TabsList className="grid w-full grid-cols-1 h-12">
                   <TabsTrigger value="email" className="text-base">
                     Email
-                  </TabsTrigger>
-                  <TabsTrigger value="phone" className="text-base">
-                    Phone
                   </TabsTrigger>
                 </TabsList>
 
@@ -157,22 +170,7 @@ export default function LoginPage() {
                     </div>
                   </TabsContent>
 
-                  <TabsContent value="phone" className="space-y-6 mt-0">
-                    <div>
-                      <Label htmlFor="phone" className="text-base font-medium">
-                        Phone Number
-                      </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        placeholder="Enter your phone number"
-                        value={formData.phone}
-                        onChange={(e) => handleInputChange("phone", e.target.value)}
-                        required
-                        className="h-12 text-base mt-2"
-                      />
-                    </div>
-                  </TabsContent>
+                  {/* Phone login disabled for now */}
 
                   <div>
                     <Label htmlFor="password" className="text-base font-medium">
@@ -204,6 +202,9 @@ export default function LoginPage() {
                     </div>
                   </div>
 
+                  {error && (
+                    <p className="text-sm text-red-600">{error}</p>
+                  )}
                   <div className="flex items-center justify-between">
                     <Link
                       href="/forgot-password"
@@ -215,9 +216,10 @@ export default function LoginPage() {
 
                   <Button
                     type="submit"
+                    disabled={submitting}
                     className="w-full h-12 text-base bg-accent text-accent-foreground hover:bg-accent/90"
                   >
-                    Sign In
+                    {submitting ? "Signing in..." : "Sign In"}
                   </Button>
                 </form>
               </Tabs>
