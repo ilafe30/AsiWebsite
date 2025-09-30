@@ -63,9 +63,9 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <Card className="shadow-lg">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Form (first) */}
+          <Card className="shadow-lg order-1">
             <CardHeader>
               <CardTitle className="text-2xl text-foreground">Send us a message</CardTitle>
             </CardHeader>
@@ -120,7 +120,7 @@ export default function ContactSection() {
           </Card>
 
           {/* Contact Information */}
-          <div className="space-y-6">
+          <div className="space-y-6 order-2">
             <div className="grid gap-6">
               {contactInfo.map((info, index) => (
                 <Card key={index} className="group hover:shadow-md transition-all duration-300">
@@ -142,7 +142,7 @@ export default function ContactSection() {
               ))}
             </div>
 
-            {/* Map placeholder */}
+            {/* Map placeholder: moved after the form on desktop by ordering */}
             <Card className="overflow-hidden">
               <div className="h-64 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
                 <div className="text-center">

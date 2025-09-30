@@ -18,31 +18,48 @@ export default function SignUpPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [acceptTerms, setAcceptTerms] = useState(false)
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    startupName: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: "",
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
+    setError("")
+    setSuccess("")
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match")
+      setError("Passwords do not match")
       return
     }
-
     if (!acceptTerms) {
-      alert("Please accept the terms and conditions")
+      setError("Please accept the terms and conditions")
       return
     }
-
-    // TODO: Implement registration logic
-    console.log("Registration attempt:", formData)
-    // Redirect to dashboard after successful registration
-    window.location.href = "/dashboard"
+    try {
+      setSubmitting(true)
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          startupName: formData.startupName,
+          email: formData.email,
+          password: formData.password,
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data?.error || "Registration failed")
+      }
+      setSuccess("Registration successful! Check your email to verify your account.")
+    } catch (err: any) {
+      setError(err.message || "Something went wrong")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: string, value: string) => {
@@ -145,33 +162,21 @@ export default function SignUpPage() {
             </CardHeader>
             <CardContent className="px-8 pb-8">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="firstName" className="text-base font-medium">
-                      First Name
-                    </Label>
-                    <Input
-                      id="firstName"
-                      placeholder="First name"
-                      value={formData.firstName}
-                      onChange={(e) => handleInputChange("firstName", e.target.value)}
-                      required
-                      className="h-12 text-base mt-2"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName" className="text-base font-medium">
-                      Last Name
-                    </Label>
-                    <Input
-                      id="lastName"
-                      placeholder="Last name"
-                      value={formData.lastName}
-                      onChange={(e) => handleInputChange("lastName", e.target.value)}
-                      required
-                      className="h-12 text-base mt-2"
-                    />
-                  </div>
+                {error && <p className="text-sm text-red-600">{error}</p>}
+                {success && <p className="text-sm text-green-600">{success}</p>}
+
+                <div>
+                  <Label htmlFor="startupName" className="text-base font-medium">
+                    Startup Name
+                  </Label>
+                  <Input
+                    id="startupName"
+                    placeholder="Your startup name"
+                    value={formData.startupName}
+                    onChange={(e) => handleInputChange("startupName", e.target.value)}
+                    required
+                    className="h-12 text-base mt-2"
+                  />
                 </div>
 
                 <div>
@@ -184,21 +189,6 @@ export default function SignUpPage() {
                     placeholder="Enter your email address"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    required
-                    className="h-12 text-base mt-2"
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="phone" className="text-base font-medium">
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
                     required
                     className="h-12 text-base mt-2"
                   />
@@ -284,9 +274,10 @@ export default function SignUpPage() {
 
                 <Button
                   type="submit"
+                  disabled={submitting}
                   className="w-full h-12 text-base bg-accent text-accent-foreground hover:bg-accent/90"
                 >
-                  Create Account
+                  {submitting ? "Creating..." : "Create Account"}
                 </Button>
               </form>
 

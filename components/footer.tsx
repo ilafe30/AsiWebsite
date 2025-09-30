@@ -94,7 +94,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-accent" />
-                <span className="text-primary-foreground/80">info@asi-algeria.com</span>
+                <span className="text-primary-foreground/80">info@ensia-algeria.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-accent" />
