@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DatabaseService } from "@/lib/database";
+import { requireAdmin } from "@/lib/api-auth";
 
 export async function GET(req: NextRequest) {
+  // Verify admin authentication
+  const auth = await requireAdmin();
+  if ("error" in auth) return auth.error;
+
   try {
     const { searchParams } = new URL(req.url);
     const page = Math.max(parseInt(searchParams.get("page") || "1", 10), 1);

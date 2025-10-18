@@ -197,4 +197,88 @@ export class AuthDatabaseService {
   deleteVerificationToken(id: number) {
     this.db.prepare('DELETE FROM email_verification_tokens WHERE id = ?').run(id);
   }
+
+  // User management methods for admin
+  listUsers(params?: { limit?: number; offset?: number; role?: string }) {
+    const limit = params?.limit ?? 50;
+    const offset = params?.offset ?? 0;
+    const roleFilter = params?.role;
+
+    let query = 'SELECT id, startup_name, email, role, email_verified, created_at FROM users';
+    const values: any[] = [];
+
+    if (roleFilter) {
+      query += ' WHERE role = ?';
+      values.push(roleFilter);
+    }
+
+    query += ' ORDER BY created_at DESC LIMIT ? OFFSET ?';
+    values.push(limit, offset);
+
+    const items = this.db.prepare(query).all(...values);
+    
+    const countQuery = roleFilter 
+      ? 'SELECT COUNT(*) as total FROM users WHERE role = ?' 
+      : 'SELECT COUNT(*) as total FROM users';
+    const countValues = roleFilter ? [roleFilter] : [];
+    const { total } = this.db.prepare(countQuery).get(...countValues) as { total: number };
+
+    return { items, total };
+  }
+
+  updateUser(id: number, params: { startup_name?: string; email?: string; role?: string }) {
+    const updates: string[] = [];
+    const values: any[] = [];
+
+    if (params.startup_name !== undefined) {
+      updates.push('startup_name = ?');
+      values.push(params.startup_name);
+    }
+    if (params.email !== undefined) {
+      updates.push('email = ?');
+      values.push(params.email);
+    }
+    if (params.role !== undefined) {
+      updates.push('role = ?');
+      values.push(params.role);
+    }
+
+    if (updates.length === 0) return;
+
+    updates.push('updated_at = CURRENT_TIMESTAMP');
+    values.push(id);
+
+    const query = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
+    this.db.prepare(query).run(...values);
+  }
+
+  deleteUser(id: number) {
+    this.db.prepare('DELETE FROM users WHERE id = ?').run(id);
+  }
+
+  updatePassword(id: number, passwordHash: string) {
+    this.db.prepare('UPDATE users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
+      .run(passwordHash, id);
+  }
+
+  close() {
+    this.db.close();
+  }
+}
+
+/**
+ * Standalone function to update email status in the AI database.
+ * Opens a temporary read/write connection to avoid altering the main readonly service.
+ */
+export function updateApplicationEmailStatus(candidatureId: number, sent: boolean) {
+  const db = new Database(aiDbPath); // read/write
+  try {
+    const stmt = db.prepare(
+      'UPDATE candidatures SET email_sent = ?, email_sent_date = ? WHERE id = ?'
+    );
+    const now = sent ? new Date().toISOString() : null;
+    stmt.run(sent ? 1 : 0, now, candidatureId);
+  } finally {
+    db.close();
+  }
 }

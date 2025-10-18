@@ -1,17 +1,15 @@
-import AnalysisDashboard from "@/components/analysis-dashboard";
-import { requireUserSession } from "@/lib/session";
-import { RedirectType } from "next/navigation";
-import { redirect } from "next/navigation";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ApplicationsTable from "@/components/admin/applications-table";
 
-export default async function AdminPage() {
-  let user;
-  try {
-    user = await requireUserSession();
-  } catch {
-    redirect("/login", RedirectType.replace);
-  }
-  if (user.role !== "admin") {
-    redirect("/dashboardfortheuser", RedirectType.replace);
-  }
-  return <AnalysisDashboard />;
+export default function AdminPage() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Applications</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ApplicationsTable />
+      </CardContent>
+    </Card>
+  );
 }

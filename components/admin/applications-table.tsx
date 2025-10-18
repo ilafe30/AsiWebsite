@@ -9,8 +9,19 @@ import { Pagination, PaginationContent, PaginationItem, PaginationNext, Paginati
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Calendar } from "lucide-react";
+import { Calendar, Mail } from "lucide-react";
 import ReportModal from "@/components/admin/report-modal";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface ApplicationItem {
   id: number;
@@ -45,6 +56,8 @@ export default function ApplicationsTable() {
   const [dateTo, setDateTo] = useState<string>("");
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [resendingId, setResendingId] = useState<number | null>(null);
+  const [confirmResendId, setConfirmResendId] = useState<number | null>(null);
 
   const query = useMemo(() => {
     const params = new URLSearchParams();
@@ -76,6 +89,24 @@ export default function ApplicationsTable() {
   }, [fetchData]);
 
   const onRefresh = () => fetchData();
+
+  const handleResendEmail = async (id: number) => {
+    setConfirmResendId(null);
+    setResendingId(id);
+    try {
+      const res = await fetch(`/api/admin/applications/${id}/resend-email`, { method: "POST" });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.error || "Failed to resend email");
+      }
+      toast.success("Email sent successfully!");
+      await fetchData(); // Refresh table to show updated status
+    } catch (e: any) {
+      toast.error(e?.message || "Failed to resend email");
+    } finally {
+      setResendingId(null);
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -165,6 +196,26 @@ export default function ApplicationsTable() {
                   <Button variant="outline" size="sm" onClick={() => setSelectedId(item.id)}>
                     View Report
                   </Button>
+                  {!item.emailSent && (
+                    <Button 
+                      variant="secondary" 
+                      size="sm" 
+                      onClick={() => setConfirmResendId(item.id)}
+                      disabled={resendingId === item.id}
+                    >
+                      {resendingId === item.id ? (
+                        <>
+                          <Mail className="h-3 w-3 mr-1 animate-pulse" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="h-3 w-3 mr-1" />
+                          Resend Email
+                        </>
+                      )}
+                    </Button>
+                  )}
                 </TableCell>
               </TableRow>
             ))}
@@ -187,6 +238,23 @@ export default function ApplicationsTable() {
       </div>
 
       <ReportModal id={selectedId} onOpenChange={(open: boolean) => !open && setSelectedId(null)} />
+
+      <AlertDialog open={!!confirmResendId} onOpenChange={(open) => !open && setConfirmResendId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Resend Email Confirmation</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to resend the analysis email to this applicant? This will trigger the email sending process.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={() => confirmResendId && handleResendEmail(confirmResendId)}>
+              Yes, Resend Email
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DatabaseService } from "@/lib/database";
+import { requireAdmin } from "@/lib/api-auth";
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+  // Verify admin authentication
+  const auth = await requireAdmin();
+  if ("error" in auth) return auth.error;
+
   try {
     const id = parseInt(params.id, 10);
     if (isNaN(id)) return NextResponse.json({ error: "Invalid ID" }, { status: 400 });

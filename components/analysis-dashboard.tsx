@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { SidebarInset, SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,14 @@ export default function AnalysisDashboard() {
                   <FileText className="h-4 w-4" />
                   <span>Applications</span>
                 </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <Link href="/admin/trainings">
+                  <SidebarMenuButton isActive={false}>
+                    <FileText className="h-4 w-4" />
+                    <span>Trainings</span>
+                  </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
               
               <SidebarMenuItem>

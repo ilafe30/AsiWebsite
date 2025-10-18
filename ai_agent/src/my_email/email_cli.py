@@ -69,12 +69,14 @@ def main():
     test_parser.add_argument('email', help='Email address to send test to')
     test_parser.add_argument('--name', default='Test User', help='Recipient name')
     
+    # Send one command
+    send_one_parser = subparsers.add_parser('send-one', help='Send email for specific candidature')
+    send_one_parser.add_argument('candidature_id', type=int, help='Candidature ID to send email for')
+    
     args = parser.parse_args()
     
     if not args.command:
         parser.print_help()
-        sys.exit(1)
-    
     setup_logging()
     logger = logging.getLogger(__name__)
     
@@ -140,6 +142,17 @@ def main():
                 print(f"Test email sent successfully to {args.email}")
             else:
                 print(f"Failed to send test email to {args.email}")
+                sys.exit(1)
+                
+        elif args.command == 'send-one':
+            # Send email for specific candidature
+            print(f"Sending email for candidature ID: {args.candidature_id}")
+            success = email_service.send_candidature_email(args.candidature_id)
+            
+            if success:
+                print(f"Email sent successfully for candidature {args.candidature_id}")
+            else:
+                print(f"Failed to send email for candidature {args.candidature_id}")
                 sys.exit(1)
         
         email_service.cleanup()
