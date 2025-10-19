@@ -24,8 +24,6 @@ export type EventItem = {
   scope: { type: "startup" | "project"; id: string };
   title: string;
   date: string;
-  assignee: string; // email or username
-  notify: boolean;
 };
 
 

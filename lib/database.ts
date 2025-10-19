@@ -142,9 +142,23 @@ export class AuthDatabaseService {
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
       );
 
+      CREATE TABLE IF NOT EXISTS user_tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        startup_id INTEGER NOT NULL,
+        objective TEXT NOT NULL,
+        description TEXT,
+        period TEXT CHECK(period IN ('monthly', 'quarterly')) NOT NULL,
+        deadline TEXT NOT NULL,
+        status TEXT CHECK(status IN ('To Do', 'Ongoing', 'Done')) NOT NULL DEFAULT 'To Do',
+        progress INTEGER CHECK(progress >= 0 AND progress <= 100) DEFAULT 0,
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        FOREIGN KEY (startup_id) REFERENCES users(id) ON DELETE CASCADE
+      );
+
       CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
       CREATE INDEX IF NOT EXISTS idx_tokens_user ON email_verification_tokens(user_id);
       CREATE INDEX IF NOT EXISTS idx_tokens_token ON email_verification_tokens(token);
+      CREATE INDEX IF NOT EXISTS idx_tasks_startup ON user_tasks(startup_id);
     `);
   }
 
@@ -259,6 +273,81 @@ export class AuthDatabaseService {
   updatePassword(id: number, passwordHash: string) {
     this.db.prepare('UPDATE users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?')
       .run(passwordHash, id);
+  }
+
+  // User Tasks methods
+  getUserTasks(startupId: number) {
+    return this.db.prepare(`
+      SELECT * FROM user_tasks 
+      WHERE startup_id = ? 
+      ORDER BY created_at DESC
+    `).all(startupId);
+  }
+
+  createUserTask(startupId: number, data: {
+    objective: string;
+    description?: string;
+    period: 'monthly' | 'quarterly';
+    deadline: string;
+    status: 'To Do' | 'Ongoing' | 'Done';
+    progress?: number;
+  }) {
+    const stmt = this.db.prepare(`
+      INSERT INTO user_tasks (
+        startup_id,
+        objective,
+        description,
+        period,
+        deadline,
+        status,
+        progress
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    const result = stmt.run(
+      startupId,
+      data.objective,
+      data.description || null,
+      data.period,
+      data.deadline,
+      data.status,
+      data.progress || 0
+    );
+
+    return this.db.prepare('SELECT * FROM user_tasks WHERE id = ?')
+      .get(result.lastInsertRowid);
+  }
+
+  updateUserTask(taskId: number, startupId: number, data: Partial<{
+    objective: string;
+    description: string;
+    period: 'monthly' | 'quarterly';
+    deadline: string;
+    status: 'To Do' | 'Ongoing' | 'Done';
+    progress: number;
+  }>) {
+    const updates = Object.entries(data)
+      .filter(([_, value]) => value !== undefined)
+      .map(([key, _]) => `${key} = @${key}`)
+      .join(", ");
+
+    if (!updates) return null;
+
+    this.db.prepare(`
+      UPDATE user_tasks 
+      SET ${updates}
+      WHERE id = @id AND startup_id = @startup_id
+    `).run({ ...data, id: taskId, startup_id: startupId });
+
+    return this.db.prepare('SELECT * FROM user_tasks WHERE id = ?')
+      .get(taskId);
+  }
+
+  getUserTask(taskId: number, startupId: number) {
+    return this.db.prepare(`
+      SELECT * FROM user_tasks 
+      WHERE id = ? AND startup_id = ?
+    `).get(taskId, startupId);
   }
 
   close() {

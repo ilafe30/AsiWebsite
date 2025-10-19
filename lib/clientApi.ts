@@ -1,6 +1,7 @@
 "use client";
 
-import { EventItem, Project, ProjectMember, User } from "./types";
+import { Project, ProjectMember, User } from "./types";
+import type { Task } from "./taskTypes";
 
 const STORAGE_KEY = "asi_demo_data_v1";
 
@@ -44,45 +45,45 @@ export const clientApi = {
     return created;
   },
 
-  // Projects
-  listProjects(): Project[] {
-    return load().projects;
-  },
-  addProject(p: Omit<Project, "id">): Project {
-    const s = load();
-    const created: Project = { id: uid("prj"), ...p };
-    s.projects.push(created);
-    save(s);
-    return created;
-  },
-  getProject(id: string): Project | undefined {
-    return load().projects.find((p) => p.id === id);
+  // Tasks
+  listTasks(userId: string): Task[] {
+    try {
+      const raw = localStorage.getItem('tasks_' + userId);
+      if (!raw) return [];
+      return JSON.parse(raw) as Task[];
+    } catch {
+      return [];
+    }
   },
 
-  // Project Members
-  listProjectMembers(projectId: string): ProjectMember[] {
-    return load().projectMembers.filter((m) => m.projectId === projectId);
-  },
-  inviteMember(projectId: string, userRef: string, role?: string): ProjectMember {
-    const s = load();
-    const created: ProjectMember = { id: uid("mem"), projectId, userRef, role };
-    s.projectMembers.push(created);
-    save(s);
+  addTask(userId: string, data: Omit<Task, "id" | "userId" | "createdAt">): Task {
+    const tasks = this.listTasks(userId);
+    const created: Task = {
+      id: uid("task"),
+      userId,
+      createdAt: new Date().toISOString(),
+      ...data
+    };
+    tasks.push(created);
+    localStorage.setItem('tasks_' + userId, JSON.stringify(tasks));
     return created;
   },
 
-  // Events (startup or project scoped)
-  listEvents(scope: { type: "startup" | "project"; id: string }): EventItem[] {
-    return load().events
-      .filter((e) => e.scope.type === scope.type && e.scope.id === scope.id)
-      .sort((a, b) => (a.date < b.date ? 1 : -1));
-  },
-  addEvent(scope: { type: "startup" | "project"; id: string }, data: Omit<EventItem, "id" | "scope">): EventItem {
-    const s = load();
-    const created: EventItem = { id: uid("evt"), scope, ...data };
-    s.events.push(created);
-    save(s);
-    return created;
+  updateTask(taskId: string, updates: Partial<Omit<Task, "id" | "userId" | "createdAt">>): Task {
+    const userId = taskId.split('_')[1]; // Extract userId from taskId
+    const tasks = this.listTasks(userId);
+    const index = tasks.findIndex(t => t.id === taskId);
+    if (index === -1) {
+      throw new Error("Task not found");
+    }
+
+    const updated = {
+      ...tasks[index],
+      ...updates
+    };
+    tasks[index] = updated;
+    localStorage.setItem('tasks_' + userId, JSON.stringify(tasks));
+    return updated;
   },
 };
 

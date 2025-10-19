@@ -33,11 +33,26 @@ export default function UserDashTopbar() {
                 <Users className="h-4 w-4" />
               </Button>
             </Link>
-            <form action="/api/auth/logout" method="post">
-              <Button variant="ghost" size="sm" type="submit">
-                <LogOut className="h-4 w-4" />
-              </Button>
-            </form>
+            <Button 
+              variant="ghost" 
+              size="sm"
+              onClick={async () => {
+                try {
+                  const res = await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                  });
+                  if (res.ok) {
+                    window.location.href = '/';
+                  }
+                } catch (error) {
+                  console.error('Logout failed:', error);
+                }
+              }}
+              className="text-red-600 hover:text-red-700 hover:bg-red-50"
+            >
+              <LogOut className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </div>

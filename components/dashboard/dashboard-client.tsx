@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { User, Settings, LogOut, Bell, Users, Calendar, Rocket } from "lucide-react";
 import { NotificationsSheet } from "@/components/dashboard/NotificationsSheet";
-import { CalendarWithEvents } from "@/components/dashboard/CalendarWithEvents";
+import { CalendarWithBoth } from "@/components/dashboard/CalendarWithBoth";
 import { ScheduleModal } from "@/components/dashboard/schedule-modal";
 
 interface DashboardPageProps {
@@ -45,11 +45,9 @@ export default function UserDashboardClient({ user }: DashboardPageProps) {
           <div className="rounded-lg border bg-card p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Calendar</h3>
-              <Button variant="outline" size="sm" onClick={() => setScheduleOpen(true)}>
-                View Training Schedule
-              </Button>
+              
             </div>
-            <CalendarWithEvents scope={{ type: "startup", id: "startup-1" }} />
+            <CalendarWithBoth userId={user.id.toString()} />
           </div>
         </div>
 
@@ -192,7 +190,29 @@ export default function UserDashboardClient({ user }: DashboardPageProps) {
                 <p className="text-muted-foreground">{user.email}</p>
                 <p className="text-sm text-muted-foreground">Member status {user.emailVerified ? "Verified" : "Unverified"}</p>
               </div>
-              <Button variant="outline">Edit Profile</Button>
+              <div className="flex items-center gap-3">
+                <Button variant="outline">Edit Profile</Button>
+                <Button 
+                  variant="ghost" 
+                  onClick={async () => {
+                    try {
+                      const res = await fetch('/api/auth/logout', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                      });
+                      if (res.ok) {
+                        window.location.href = '/';
+                      }
+                    } catch (error) {
+                      console.error('Logout failed:', error);
+                    }
+                  }}
+                  className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              </div>
             </div>
           </CardContent>
         </Card>
