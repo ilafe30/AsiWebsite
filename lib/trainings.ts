@@ -5,8 +5,19 @@ import path from "path";
 const aiDbPath = path.join(process.cwd(), "ai_agent", "data", "database", "nanonets_extraction.db");
 
 function getDbRW() {
-  // open read/write connection
-  return new Database(aiDbPath);
+  try {
+    // Make sure directory exists
+    const dbDir = path.dirname(aiDbPath);
+    if (!require('fs').existsSync(dbDir)) {
+      require('fs').mkdirSync(dbDir, { recursive: true });
+    }
+    console.log('[DB] Opening database at:', aiDbPath);
+    // open read/write connection
+    return new Database(aiDbPath);
+  } catch (e: any) {
+    console.error('[DB] Failed to open database:', e);
+    throw new Error(`Failed to open database: ${e?.message || 'Unknown error'}`);
+  }
 }
 
 function initSchema(db: Database.Database) {

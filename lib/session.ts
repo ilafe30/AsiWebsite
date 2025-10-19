@@ -33,19 +33,11 @@ export const sessionOptions: IronSessionOptions = {
 };
 
 export async function getSession(): Promise<AppSession> {
+  console.log("[Session] Getting session");
   const cookieStore = await cookies();
+  console.log("[Session] Cookie store accessed");
   const session = await getIronSession<{ user?: SessionUser; lastActiveAt?: number }>(cookieStore, sessionOptions);
-
-  // Inactivity timeout: if lastActiveAt is older than 30 min, destroy session
-  const now = Date.now();
-  const THIRTY_MIN_MS = 30 * 60 * 1000;
-  if (session.lastActiveAt && now - session.lastActiveAt > THIRTY_MIN_MS) {
-    session.destroy();
-  } else {
-    // Touch activity timestamp
-    session.lastActiveAt = now;
-    await session.save();
-  }
+  console.log("[Session] Iron session loaded, has user:", !!session.user);
   return session as AppSession;
 }
 

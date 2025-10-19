@@ -2,14 +2,14 @@ import nodemailer from "nodemailer";
 
 const smtpHost = process.env.SMTP_HOST;
 const smtpPort = parseInt(process.env.SMTP_PORT || "587", 10);
-const smtpUser = process.env.SMTP_USER;
-const smtpPass = process.env.SMTP_PASS;
-const fromEmail = process.env.FROM_EMAIL || "no-reply@asi.local";
+const smtpUser = process.env.SMTP_USER || process.env.SMTP_USERNAME;
+const smtpPass = process.env.SMTP_PASS || process.env.SMTP_PASSWORD;
+const fromEmail = process.env.FROM_EMAIL || process.env.SUPPORT_EMAIL || "no-reply@asi.local";
 
 export function getTransport() {
   if (!smtpHost || !smtpUser || !smtpPass) {
     // eslint-disable-next-line no-console
-    console.warn("SMTP env vars missing (SMTP_HOST/SMTP_USER/SMTP_PASS). Emails will fail.");
+    console.warn("SMTP env vars missing. Required: SMTP_HOST and either SMTP_USER (or SMTP_USERNAME) and SMTP_PASS (or SMTP_PASSWORD). Emails will fail.");
   }
   return nodemailer.createTransport({
     host: smtpHost,

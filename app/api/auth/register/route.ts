@@ -32,8 +32,16 @@ export async function POST(request: Request) {
     const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
     authDb.createVerificationToken(userId, token, expiresAt);
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL || "http://localhost:3000";
+    // Try all possible URL env vars, preferring NEXT_PUBLIC_APP_URL if set
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
+                   process.env.BASE_URL || 
+                   process.env.VERCEL_URL || 
+                   "http://localhost:3000";
+                   
+    // Ensure URL has http/https prefix
     const publicUrl = baseUrl.startsWith("http") ? baseUrl : `https://${baseUrl}`;
+    
+    // Build verification URL with encoded token
     const verifyUrl = `${publicUrl}/api/auth/verify?token=${encodeURIComponent(token)}`;
 
     await sendVerificationEmail({ to: email, verifyUrl, startupName });

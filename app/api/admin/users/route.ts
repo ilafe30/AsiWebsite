@@ -68,6 +68,9 @@ export async function POST(req: NextRequest) {
       authDb.updateUser(userId, { role });
     }
 
+    // Auto-verify users created by admin
+    authDb.markEmailVerified(userId);
+
     authDb.close();
 
     return NextResponse.json({ success: true, id: userId });
